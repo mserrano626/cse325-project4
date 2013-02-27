@@ -1,12 +1,22 @@
-/*
- * led.h
- *
- *  Created on: Feb 27, 2013
- *      Author: maserra3
+/* FILENAME: uc_led.h
+ * ASSIGNMENT: Lab Project 3
+ * NAME: Mario Serrano
+ * EMAIL: maserra3@asu.edu
+ * CLASS: CSE325 Embedded Microprocessor Systems
+ * SEMESTER: Spring 2013
  */
+#ifndef UC_LED_H
+#define UC_LED_H
 
-#ifndef LED_H_
-#define LED_H_
+#include "MCF52259.h"
+#include "gpio.h"
 
+extern void uc_led_all_off();
+extern void uc_led_all_on();
+extern void uc_led_all_toggle();
+extern void uc_led_init();
+extern void uc_led_off(int p_led);
+extern void uc_led_on(int p_led);
+extern void uc_led_toggle(int p_led);
 
-#endif /* LED_H_ */
+#endif

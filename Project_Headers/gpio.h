@@ -1,12 +1,22 @@
-/*
- * gpio.h
- *
- *  Created on: Feb 27, 2013
- *      Author: maserra3
+/* FILENAME: gpio.h
+ * ASSIGNMENT: Lab Project 4
+ * NAME: Mario Serrano
+ * EMAIL: maserra3@asu.edu
+ * CLASS: CSE325 Embedded Microprocessor Systems
+ * SEMESTER: Spring 2013
  */
+#ifndef GPIO_H
+#define GPIO_H
 
-#ifndef GPIO_H_
-#define GPIO_H_
+#include "MCF52259.h"
 
 
-#endif /* GPIO_H_ */
+extern int gpio_port_tc_get_pin_state(int p_pin);
+extern void gpio_port_tc_init();
+extern void gpio_port_tc_set_pin_state(int p_pin, int p_state);
+extern void gpio_port_ta_init();
+extern void gpio_port_ta_set_pin_state(int p_pin, int p_state);
+extern int gpio_port_ta_get_pin_state(int p_pin);
+
+
+#endif

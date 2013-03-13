@@ -1,24 +1,29 @@
-/*
- * main implementation: use this sample to create your own application
- *
+/*Source File:	main.c
+ *Project Name:	Project 4
+ *Name:			Mario Serrano
+ *Email:		maserra3@asu.edu
+ *Course name:	CSE325 Embedded Microprocessor Systems
+ *Semester:		Spring 2013
  */
 
 
 #include "support_common.h" /* include peripheral declarations and more */
-#if (CONSOLE_IO_SUPPORT || ENABLE_UART_SUPPORT)
-/* Standard IO is only possible if Console or UART support is enabled. */
-#include <stdio.h>
-#endif
+#include "song.h"
+#include "pwm.h"
+#include "gpio.h"
 
 
-int main(void)
+
+__declspec(noreturn)int main(void)
 {
-	int counter = 0;
-
-#if (CONSOLE_IO_SUPPORT || ENABLE_UART_SUPPORT)
-	printf("Hello World in C++ from MCF52259 derivative on TWR-MCF5225X board\n\r");
-#endif
-	for(;;) {	   
-	   	counter++;
+	/*  proof that the speaker works */
+	
+	gpio_port_ta_init();
+	init_pwm();
+	
+	while(1){
+		
+		play_song();
+		
 	}
 }

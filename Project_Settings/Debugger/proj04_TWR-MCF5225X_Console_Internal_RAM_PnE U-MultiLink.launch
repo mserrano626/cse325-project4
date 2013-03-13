@@ -111,13 +111,13 @@
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.cfv234.STARTUP_PCI_DELAY" value="0"/>
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.cfv234.STARTUP_PORT" value="1"/>
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.cfv234.STARTUP_interface_selection" value="3"/>
-<booleanAttribute key="com.pemicro.mcu.debug.connections.pne.cfv234.USE_BDM_INTERFACE_FOR_FREEZE_DETECTION" value="false"/>
+<stringAttribute key="com.pemicro.mcu.debug.connections.pne.cfv234.USE_BDM_INTERFACE_FOR_FREEZE_DETECTION" value="false"/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_ID" value="com.freescale.cdt.debug.cw.coldfire.ColdFireDebugger"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="TWR-MCF5225X_Console_Internal_RAM/proj04.elf"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="proj04"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="proj04ms"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value="com.freescale.coldfire.toolchain.configuration.1681751951"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/proj04"/>
+<listEntry value="/proj04ms"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>

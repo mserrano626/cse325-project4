@@ -9,5 +9,6 @@
 #define SONG_H_
 
 extern void play_song();
+extern void song_notes();
 
 #endif /* SONG_H_ */

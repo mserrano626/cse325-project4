@@ -30,10 +30,10 @@ void note(int p_note, int duration){
 	}
 	else if (p_note == 0x01){
 		/*C4 - 261.63*/
-		//Note.pre = 0x01;
-		Note.scale = 0xC3;
-		Note.period = 0xC4;
-		Note.duty = 0x9D;
+		Note.pre = 2;
+		Note.scale = 149;
+		Note.period = 255;
+		Note.duty = 204;
 		Note.led = 2;
 	}
 	else if (p_note == 0x02){

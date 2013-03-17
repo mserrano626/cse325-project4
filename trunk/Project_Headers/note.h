@@ -8,6 +8,8 @@
 #ifndef NOTE_H_
 #define NOTE_H_
 
-extern void note(int p_note);
+
+
+extern void note(int p_note, int duration);
 
 #endif /* NOTE_H_ */

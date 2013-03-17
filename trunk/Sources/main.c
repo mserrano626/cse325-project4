@@ -11,6 +11,8 @@
 #include "song.h"
 #include "pwm.h"
 #include "gpio.h"
+#include "pit.h"
+#include "led.h"
 
 
 
@@ -20,10 +22,13 @@ __declspec(noreturn)int main(void)
 	
 	gpio_port_ta_init();
 	init_pwm();
+	pit0_init();
+	int_uninhibit_all();
+	uc_led_init();
+	
 	
 	while(1){
-		
 		play_song();
-		
 	}
 }
+

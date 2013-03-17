@@ -13,6 +13,7 @@
 #include "gpio.h"
 #include "pit.h"
 #include "led.h"
+#include "pb.h"
 
 
 
@@ -25,6 +26,7 @@ __declspec(noreturn)int main(void)
 	pit0_init();
 	int_uninhibit_all();
 	uc_led_init();
+	gpt_init();
 	
 	
 	while(1){

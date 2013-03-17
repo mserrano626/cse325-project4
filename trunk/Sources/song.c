@@ -21,24 +21,24 @@ static void busy_delay(int p_delay)
 /*test song*/
 void play_song(){
 			
-			/*
+			
 			note(0x06,0);
 			busy_delay(1000000);
-			*/
-			busy_delay(1000000);
-			note(0x01,0x00);//c
 			
-			busy_delay(100);
+			busy_delay(1000000);
+			note(1,0);//c
+			
+			busy_delay(10000);
 			note(0xFF,0);
 			
 			busy_delay(1000000);
-			note(0x01,0x00);//c
+			note(0x01,0);//c
 			busy_delay(1000000);
 			
 			note(0x08,0x00);//g
 			busy_delay(1000000);
 			
-			busy_delay(100);
+			busy_delay(10000);
 			note(0xFF,0);
 			
 			note(0x08,0);
@@ -47,7 +47,7 @@ void play_song(){
 			note(0x0A,0);
 			busy_delay(1000000);
 			
-			busy_delay(100);
+			busy_delay(10000);
 			note(0xFF,0);
 			
 			note(0x0A,0);
@@ -55,7 +55,7 @@ void play_song(){
 			
 			note(0x08,0);
 			busy_delay(1000000*2);
-			/*
+			
 			note(0x06,0);
 			busy_delay(1000000);
 			note(0x07,0);
@@ -69,8 +69,8 @@ void play_song(){
 			note(0x0B,0);
 			busy_delay(1000000);
 			note(0x0D,0);
-			busy_delay(1000000);
-			*/
+			busy_delay(1000000*3);
+			
 			
 }
 

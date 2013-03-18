@@ -12,6 +12,4 @@
 
 extern void gpt_init();
 
-
-
 #endif /* PB_H_ */

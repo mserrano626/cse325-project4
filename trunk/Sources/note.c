@@ -119,6 +119,14 @@ void note(int p_note, int duration)
 		Note.duty = 0xAA;
 		Note.led = 4;
 		}
+	else if (p_note == 0x0C){
+		/*B3 - 246.94 Hz*/
+		Note.pre = 0x00;
+		Note.scale = 0xA2;
+		Note.period = 0xFA;
+		Note.duty = 0xC8;
+		Note.led = 1;
+	}
 	else if (p_note == 0x0D){
 			/*C5 - 523.25*/
 		Note.pre = 0x00;

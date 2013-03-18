@@ -13,7 +13,9 @@ int currentTempo;
 unsigned int timer;
 unsigned int quarterNoteTime;
 unsigned int newTime;
-int tempo = 0;
+int tempo;
+int d_flag = 0;
+int d_count = 0;
 
 void pit0_init(){
 	
@@ -29,7 +31,7 @@ void pit0_init(){
 	set_tempo();
 	
 	
-	
+	timer = MCF_PIT0_PMR;
 	//enable
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_EN;
 	
@@ -37,10 +39,10 @@ void pit0_init(){
 
 
 void set_note_length(int note_length){
-	//MCF_PIT0_PCSR &= ~MCF_PIT_PCSR_EN;
 	
 	
-	timer = MCF_PIT0_PMR;
+	
+	
 	
 	if (note_length == 0x00){
 		//whole note
@@ -110,16 +112,16 @@ void set_note_length(int note_length){
 
 void set_tempo(){
 	
-	//disable while configuring
-	//MCF_PIT0_PCSR &= ~MCF_PIT_PCSR_EN;
 	
-	
-	
-	if(tempo == 0)//set to currentTempo
-		tempo = currentTempo;
+	if(currentTempo == 60)
+		d_flag = 10;
+	if(currentTempo == 120)
+		d_flag = -10;
+
+	currentTempo = currentTempo + d_flag;
 		
 	//set value of counter
-	switch(tempo){
+	switch(currentTempo){
 	case 70: quarterNoteTime = 4184;
 		currentTempo = 70;
 		break;
@@ -152,3 +154,4 @@ void pit_off() {
 	//clear PCSR0[0] EN bit
 	MCF_PIT0_PCSR &= ~(0x0001);
 }
+

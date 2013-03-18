@@ -19,7 +19,7 @@
 
 __declspec(noreturn)int main(void)
 {
-	/*  proof that the speaker works */
+	
 	gpio_port_tc_init();
 	gpio_port_ta_init();
 	init_pwm();

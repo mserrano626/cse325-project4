@@ -11,6 +11,8 @@
 #include "note.h"
 #include "song.h"
 
+
+
 extern uint32 __VECTOR_RAM[];
 
 #define ICR_BASE (volatile uint8 *)(0x40000C40)
@@ -68,6 +70,7 @@ __declspec(interrupt) void pit0_isr(){
 
 __declspec(interrupt) void gpt0_isr()
 {
+	
 	// This will change the song BPM
 	set_tempo();
 	//Clear the interrupt request flag

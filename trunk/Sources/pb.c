@@ -14,7 +14,25 @@
 
 void gpt_init(){
 	
+	gpio_port_ta_init();
 	
+	MCF_GPT_GPTIOS &= ~(0x1);
+	
+	MCF_GPT_GPTCTL2 &= 0xFC;
+	
+	MCF_GPT_GPTCTL2 |= 0x2;
+	
+	MCF_GPT_GPTFLG1 &= 0xE;
+	
+	MCF_GPT_GPTIE |= 0x1;
+	
+	MCF_GPT_GPTSCR1 |= 0x80;
+	
+	MCF_GPT_GPTDDR &= 0xE;
+	
+	
+	
+	/*
 	//sets gpt chan 0 for input
 	MCF_GPT_GPTIOS &= ~MCF_GPT_GPTIOS_IOS0;
 	
@@ -28,6 +46,6 @@ void gpt_init(){
 	MCF_GPT_GPTSCR1 |= MCF_GPT_GPTSCR1_GPTEN;
 	
 	MCF_GPT_GPTFLG1 |= MCF_GPT_GPTFLG1_CF0;
-	
+	*/
 	
 }

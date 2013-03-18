@@ -1,8 +1,9 @@
-/*
- * interupt.c
- *
- *  Created on: Feb 27, 2013
- *      Author: maserra3
+/*Source File:	interupt.c
+ *Project Name:	Project 4
+ *Name:			Mario Serrano
+ *Email:		maserra3@asu.edu
+ *Course name:	CSE325 Embedded Microprocessor Systems
+ *Semester:		Spring 2013
  */
 
 #include "interupt.h"
@@ -67,7 +68,7 @@ __declspec(interrupt) void pit0_isr(){
 		// play the next note
 		play_song();	
 }
-
+/*
 __declspec(interrupt) void gpt0_isr()
 {
 	
@@ -78,3 +79,4 @@ __declspec(interrupt) void gpt0_isr()
 
 
 }
+*/

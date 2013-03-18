@@ -1,10 +1,10 @@
-/*
- * pit.c
- *
- *  Created on: Feb 27, 2013
- *      Author: maserra3
+/*Source File:	pit.c
+ *Project Name:	Project 4
+ *Name:			Mario Serrano
+ *Email:		maserra3@asu.edu
+ *Course name:	CSE325 Embedded Microprocessor Systems
+ *Semester:		Spring 2013
  */
-
 #include "pit.h"
 #include "support_common.h"
 #include "led.h"
@@ -12,7 +12,7 @@
 int currentTempo;
 unsigned int timer;
 unsigned int quarterNoteTime;
-unsigned int newTime;
+double newTime;
 int tempo;
 int d_flag = 0;
 int d_count = 0;
@@ -27,7 +27,7 @@ void pit0_init(){
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_DBG;
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_PRE(13);
 	
-	currentTempo = 60;
+	currentTempo = 90;
 	set_tempo();
 	
 	
@@ -39,9 +39,6 @@ void pit0_init(){
 
 
 void set_note_length(int note_length){
-	
-	
-	
 	
 	
 	if (note_length == 0x00){
@@ -96,54 +93,42 @@ void set_note_length(int note_length){
 		newTime = timer * 0; // .25 rest
 	
 	//clear PMR of previous value
-		MCF_PIT0_PMR &= 0;
+	MCF_PIT0_PMR &= 0;
 
-		//set the new PMR value
-		MCF_PIT0_PMR |= (int) newTime;
+	//set the new PMR value
+	MCF_PIT0_PMR |= (int) newTime;
 
-		//enable PIT
-		MCF_PIT0_PCSR |= 0x1;
-	//assign new value to PMR
-	//MCF_PIT0_PMR = MCF_PIT_PMR_PM((unsigned short)newTime);
-	//enable
-	//MCF_PIT0_PCSR |= MCF_PIT_PCSR_EN;
+	//enable PIT
+	MCF_PIT0_PCSR |= 0x1;
 	
 }
 
 void set_tempo(){
 	
-	
-	if(currentTempo == 60)
-		d_flag = 10;
-	if(currentTempo == 120)
-		d_flag = -10;
-
-	currentTempo = currentTempo + d_flag;
-		
 	//set value of counter
-	switch(currentTempo){
-	case 70: quarterNoteTime = 4184;
-		currentTempo = 70;
-		break;
-	case 80: quarterNoteTime = 3661;
-		currentTempo = 80;
-		break;
-	case 90: quarterNoteTime = 3254;
-		currentTempo = 90;
-		break;
-	case 100: quarterNoteTime = 2929;
-		currentTempo = 100;		
-		break;	
-	case 110: quarterNoteTime = 2662;
-		currentTempo = 110;
-		break;
-	case 120: quarterNoteTime = 2440;
-		currentTempo = 120;
-		break;
-	default: quarterNoteTime = 4882;
-		currentTempo = 60;
-		break;
+	if (currentTempo == 60)
+	{
+		quarterNoteTime = 4882;
 	}
+	else if (currentTempo == 70){
+		quarterNoteTime = 4184;
+	}
+	else if (currentTempo == 80){
+		quarterNoteTime = 3661;
+	}
+	else if (currentTempo == 90){
+		quarterNoteTime = 3254;
+	}
+	else if (currentTempo == 100){
+		quarterNoteTime = 2929;
+	}
+	else if (currentTempo == 110){
+		quarterNoteTime = 2662;
+	}
+	else if (currentTempo == 120){
+		quarterNoteTime = 2440;
+	}
+	
 	MCF_PIT0_PMR = MCF_PIT_PMR_PM((unsigned short)quarterNoteTime);
 	//enable
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_EN;
@@ -155,3 +140,24 @@ void pit_off() {
 	MCF_PIT0_PCSR &= ~(0x0001);
 }
 
+__declspec(interrupt) void gpt0_isr()
+{
+	
+	if(d_flag){
+		currentTempo = currentTempo - 10;
+	}
+	else{
+		currentTempo = currentTempo + 10;
+	}
+	
+	if(currentTempo == 60 || currentTempo == 120){
+		d_flag = (~d_flag) & 0x1;//switch direction
+	}
+	
+	// change tempo
+	set_tempo();
+	//Clear the interrupt request flag
+	MCF_GPT_GPTFLG1 = 0x01;
+
+
+}

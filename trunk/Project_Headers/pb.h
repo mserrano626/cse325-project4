@@ -11,7 +11,7 @@
 #include "support_common.h"
 
 extern void gpt_init();
-extern __declspec(interrupt) void gpt0_isr();
+
 
 
 #endif /* PB_H_ */

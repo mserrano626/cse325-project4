@@ -13,7 +13,8 @@
 
 extern void pit0_init();
 extern void set_note_length(int);
-extern __declspec(interrupt) void pit0_isr();
-extern void set_tempo(int);
+
+extern void set_tempo();
+extern void pit_off();
 
 #endif /* PIT_H_ */

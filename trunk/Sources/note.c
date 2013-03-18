@@ -138,7 +138,7 @@ void note(int p_note, int duration)
 	}
 	
 	set_pitch(Note.pre, Note.scale, Note.period, Note.duty);
-	set_note_length(duration);//the 4184 should change with the tempo
+	set_note_length(duration);
 	uc_led_on(Note.led);
 	
 	

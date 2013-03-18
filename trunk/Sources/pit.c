@@ -13,6 +13,7 @@ int currentTempo;
 unsigned int timer;
 unsigned int quarterNoteTime;
 unsigned int newTime;
+int tempo = 0;
 
 void pit0_init(){
 	
@@ -25,23 +26,18 @@ void pit0_init(){
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_PRE(13);
 	
 	currentTempo = 60;
-	set_tempo(60);
+	set_tempo();
 	
-	interupt_config(55, 1, 7, pit0_isr);
+	
 	
 	//enable
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_EN;
 	
 }
 
-__declspec(interrupt) void pit0_isr(){
-	/* Clear interrupt request flag. */
-	MCF_PIT0_PCSR |= MCF_PIT_PCSR_PIF;
-
-}
 
 void set_note_length(int note_length){
-	MCF_PIT0_PCSR &= ~MCF_PIT_PCSR_EN;
+	//MCF_PIT0_PCSR &= ~MCF_PIT_PCSR_EN;
 	
 	
 	timer = MCF_PIT0_PMR;
@@ -97,18 +93,27 @@ void set_note_length(int note_length){
 	else
 		newTime = timer * 0; // .25 rest
 	
-	
+	//clear PMR of previous value
+		MCF_PIT0_PMR &= 0;
+
+		//set the new PMR value
+		MCF_PIT0_PMR |= (int) newTime;
+
+		//enable PIT
+		MCF_PIT0_PCSR |= 0x1;
 	//assign new value to PMR
-	MCF_PIT0_PMR = MCF_PIT_PMR_PM((unsigned short)newTime);
+	//MCF_PIT0_PMR = MCF_PIT_PMR_PM((unsigned short)newTime);
 	//enable
-	MCF_PIT0_PCSR |= MCF_PIT_PCSR_EN;
+	//MCF_PIT0_PCSR |= MCF_PIT_PCSR_EN;
 	
 }
 
-void set_tempo(int tempo){
+void set_tempo(){
 	
 	//disable while configuring
-	MCF_PIT0_PCSR &= ~MCF_PIT_PCSR_EN;
+	//MCF_PIT0_PCSR &= ~MCF_PIT_PCSR_EN;
+	
+	
 	
 	if(tempo == 0)//set to currentTempo
 		tempo = currentTempo;
@@ -143,3 +148,7 @@ void set_tempo(int tempo){
 	
 }
 
+void pit_off() {
+	//clear PCSR0[0] EN bit
+	MCF_PIT0_PCSR &= ~(0x0001);
+}

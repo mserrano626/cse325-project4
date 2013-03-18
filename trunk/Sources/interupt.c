@@ -6,6 +6,10 @@
  */
 
 #include "interupt.h"
+#include "pit.h"
+#include "pwm.h"
+#include "note.h"
+#include "song.h"
 
 extern uint32 __VECTOR_RAM[];
 
@@ -45,4 +49,29 @@ asm __declspec(standard_abi) void int_uninhibit_all(){
 	move.w d0, SR
 	rts
 	
+}
+
+__declspec(interrupt) void pit0_isr(){
+
+		//Clear pit 0 channel 0 interrupt request flag
+		MCF_PIT0_PCSR |= 0x0004;
+
+		//stop current note
+		note(0xFF, 0x03);
+
+		//stop timer and reset
+		pit_off();
+
+		// play the next note
+		play_song();	
+}
+
+__declspec(interrupt) void gpt0_isr()
+{
+	// This will change the song BPM
+	set_tempo();
+	//Clear the interrupt request flag
+	MCF_GPT_GPTFLG1 = 0x01;
+
+
 }

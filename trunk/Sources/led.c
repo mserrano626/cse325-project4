@@ -1,5 +1,5 @@
-/* FILENAME: uc_led.c
- * ASSIGNMENT: Lab Project 3
+/* FILENAME: led.c
+ * ASSIGNMENT: Lab Project 4
  * NAME: Mario Serrano
  * EMAIL: maserra3@asu.edu
  * CLASS: CSE325 Embedded Microprocessor Systems

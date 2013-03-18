@@ -1,10 +1,10 @@
-/*
- * pit.h
- *
- *  Created on: Feb 27, 2013
- *      Author: maserra3
+/*Source File:	main.h
+ *Project Name:	Project 4
+ *Name:			Mario Serrano
+ *Email:		maserra3@asu.edu
+ *Course name:	CSE325 Embedded Microprocessor Systems
+ *Semester:		Spring 2013
  */
-
 #ifndef PIT_H_
 #define PIT_H_
 
@@ -17,5 +17,6 @@ extern void set_note_length(int);
 extern void set_tempo();
 extern void pit_off();
 
+extern __declspec(interrupt) void gpt0_isr();
 
 #endif /* PIT_H_ */

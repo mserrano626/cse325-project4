@@ -1,8 +1,9 @@
-/*
- * pb.c
- *
- *  Created on: Feb 27, 2013
- *      Author: maserra3
+/*Source File:	pb.c
+ *Project Name:	Project 4
+ *Name:			Mario Serrano
+ *Email:		maserra3@asu.edu
+ *Course name:	CSE325 Embedded Microprocessor Systems
+ *Semester:		Spring 2013
  */
 
 #include "pb.h"

@@ -68,15 +68,12 @@ __declspec(interrupt) void pit0_isr(){
 		// play the next note
 		play_song();	
 }
-/*
+
 __declspec(interrupt) void gpt0_isr()
 {
-	
-	// This will change the song BPM
-	set_tempo();
 	//Clear the interrupt request flag
 	MCF_GPT_GPTFLG1 = 0x01;
-
-
+	// This will change the song BPM
+	set_tempo();
+	
 }
-*/

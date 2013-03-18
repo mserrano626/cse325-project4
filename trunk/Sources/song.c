@@ -8,6 +8,17 @@
 #include "note.h"
 #include "song.h"
 #include "pit.h"
+
+struct songNotes{
+	int pitch;
+	int length;
+	
+};
+
+struct songNotes list[256];
+int noteCount;
+int i;
+
 /*for testing*/
 static void busy_delay(int p_delay)
 {
@@ -18,93 +29,45 @@ static void busy_delay(int p_delay)
 	}
 }
 
+
+
+
 /*test song*/
 void play_song(){
+	noteCount = 3;
+	
+	song_notes();
 			
-			
-			note(0x06,0);
-			busy_delay(1000000);
-			
-			busy_delay(1000000);
-			note(1,0);//c
-			
-			busy_delay(10000);
-			note(0xFF,0);
-			
-			busy_delay(1000000);
-			note(0x01,0);//c
-			busy_delay(1000000);
-			
-			note(0x08,0x00);//g
-			busy_delay(1000000);
-			
-			busy_delay(10000);
-			note(0xFF,0);
-			
-			note(0x08,0);
-			busy_delay(1000000);
-			
-			note(0x0A,0);
-			busy_delay(1000000);
-			
-			busy_delay(10000);
-			note(0xFF,0);
-			
-			note(0x0A,0);
-			busy_delay(1000000);
-			
-			note(0x08,0);
-			busy_delay(1000000*2);
-			
-			note(0x06,0);
-			busy_delay(1000000);
-			note(0x07,0);
-			busy_delay(1000000);
-			note(0x08,0);
-			busy_delay(1000000);
-			note(0x09,0);
-			busy_delay(1000000);
-			note(0x0A,0);
-			busy_delay(1000000);
-			note(0x0B,0);
-			busy_delay(1000000);
-			note(0x0D,0);
-			busy_delay(1000000*3);
-			
+	for (i=0;i<=noteCount;i++)
+	{
+		if (i >= noteCount){
+			i = -1;
+		}
+		else
+		{
+			note(list[i].pitch, list[i].length);
+		}
+	}
 			
 }
 
+//
 void song_notes(){
 	
 	
-	note(0x00,0x00);
-	//busy_delay(1000000);
-	//pit0_isr();
-	note(0x01,0x01);
-	//busy_delay(1000000);
-	note(0x02,0x03);
-	//pit0_isr();
-	//busy_delay(1000000);
-	note(0x03,3);
-	//pit0_isr();
+	list[0].pitch = 0x01;
+	list[0].length = 0x03;
 	
-	//busy_delay(1000000);
-	note(0x04,5);
-	//busy_delay(1000000);
-	note(0x05,5);
-	//busy_delay(1000000);
-	note(0x06,5);
-	//busy_dely(1000000);
-	note(0x07,5);
-	//busy_delay(1000000);
-	note(0x08,3);
-	//busy_delay(1000000);
-	note(0x09,3);
-	//busy_delay(1000000);
-	note(0x0A,1);
-	//busy_delay(1000000);
-	note(0x0B,0);
-	//busy_delay(1000000);
-	note(0x0D,0);
-	//busy_delay(1000000);
+	list[1].pitch = 0x0A;
+	list[1].length = 0x03;
+	
+	list[2].pitch = 0x06;
+	list[2].length = 0x03;
+	
+	list[3].pitch = 0x00;
+	list[3].length = 0x01;
+	
+
+	
+	
 }

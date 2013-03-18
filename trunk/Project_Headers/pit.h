@@ -12,7 +12,7 @@
 #include "interupt.h"
 
 extern void pit0_init();
-extern void set_note_length(int, int);
+extern void set_note_length(int);
 extern __declspec(interrupt) void pit0_isr();
 extern void set_tempo(int);
 

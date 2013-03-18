@@ -48,9 +48,6 @@ __declspec(interrupt) void gpt0_isr(){
 	
 	
 		set_tempo(current_beat);	
-
-	// For debugging button debounce problems
-	//printf("Beat: %d\n", current_beat); 
 	
 	/* set to clear the GPT channel 0 interrupt request flag. */
 	MCF_GPT_GPTFLG1 |= MCF_GPT_GPTFLG1_CF0;

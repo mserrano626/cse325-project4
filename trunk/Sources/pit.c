@@ -12,6 +12,7 @@
 int currentTempo;
 unsigned int timer;
 unsigned int quarterNoteTime;
+unsigned int newTime;
 
 void pit0_init(){
 	
@@ -37,12 +38,9 @@ __declspec(interrupt) void pit0_isr(){
 	/* Clear interrupt request flag. */
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_PIF;
 
-	//turn led off
-	uc_led_all_off();
-	//playNextNote();
 }
 
-void set_note_length(int time, int note_length){
+void set_note_length(int note_length){
 	MCF_PIT0_PCSR &= ~MCF_PIT_PCSR_EN;
 	
 	
@@ -50,58 +48,58 @@ void set_note_length(int time, int note_length){
 	
 	if (note_length == 0x00){
 		//whole note
-		timer = (unsigned int)time * 4;
+		newTime = (unsigned int)timer * 4;
 	}
 	else if (note_length == 0x01){
 		//half note
-		timer = (unsigned int)time * 2;
+		newTime = (unsigned int)timer * 2;
 	}
 	else if (note_length == 0x02){
 		//dotted half
-		timer = (unsigned int)time * 3;
+		newTime = (unsigned int)timer * 3;
 	}
 	else if (note_length == 0x03){
 		//quarter
-		timer = (unsigned int)time;
+		newTime = (unsigned int)timer;
 	}
 	else if (note_length == 0x04){
 		//dotted quarter
-		timer = (unsigned int)time * 1.5;
+		newTime = (unsigned int)timer * 1.5;
 	}
 	else if (note_length == 0x05){
 		//eighth
-		timer = (unsigned int)time * .5;
+		newTime = (unsigned int)timer * .5;
 	}
 	else if (note_length == 0x06){
 		//dotted eighth
-		timer = (unsigned int)time * .75;
+		newTime = (unsigned int)timer * .75;
 	}
 	else if (note_length == 0x07){
 		//16th
-		timer = (unsigned int)time * .25;
+		newTime = (unsigned int)timer * .25;
 	}
 	else if (note_length == 0x08){
 		//dotted 16th
-		timer = (unsigned int)time * .375;
+		newTime = (unsigned int)timer * .375;
 	}
 	else if (note_length == 0x09){
 		//32nd
-		timer = (unsigned int)time * .0625;
+		newTime = (unsigned int)timer * .0625;
 	}
 	else if (note_length == 0x0A){
 		//dotted 32nd
-		timer = (unsigned int)time * .09375;
+		newTime = (unsigned int)timer * .09375;
 	}
 	else if (note_length == 0x0B){
 		//64th
-		timer = (unsigned int)time * .03125;
+		newTime = (unsigned int)timer * .03125;
 	}
 	else
-		timer = time * 0; // .25 rest
+		newTime = timer * 0; // .25 rest
 	
 	
 	//assign new value to PMR
-	MCF_PIT0_PMR = MCF_PIT_PMR_PM((unsigned short)timer);
+	MCF_PIT0_PMR = MCF_PIT_PMR_PM((unsigned short)newTime);
 	//enable
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_EN;
 	
@@ -142,5 +140,6 @@ void set_tempo(int tempo){
 	MCF_PIT0_PMR = MCF_PIT_PMR_PM((unsigned short)quarterNoteTime);
 	//enable
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_EN;
+	
 }
 

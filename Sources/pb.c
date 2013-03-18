@@ -28,12 +28,12 @@ void gpt_init(){
 	
 	MCF_GPT_GPTFLG1 |= MCF_GPT_GPTFLG1_CF0;
 	
-	interupt_config(44, 1, 7, gpt0_isr);
+	//interupt_config(44, 1, 7, gpt0_isr);
 	
 	tempo_count = 0;
 	current_beat = 60;
 }
-
+/*
 __declspec(interrupt) void gpt0_isr(){
 	if(tempo_count)
 		current_beat = current_beat - 10;
@@ -50,5 +50,6 @@ __declspec(interrupt) void gpt0_isr(){
 		set_tempo(current_beat);	
 	
 	/* set to clear the GPT channel 0 interrupt request flag. */
-	MCF_GPT_GPTFLG1 |= MCF_GPT_GPTFLG1_CF0;
-}
+	//MCF_GPT_GPTFLG1 |= MCF_GPT_GPTFLG1_CF0;
+//}
+

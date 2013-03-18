@@ -26,6 +26,8 @@ __declspec(noreturn)int main(void)
 	uc_led_init();
 	gpt_init();
 	pit0_init();
+	interupt_config(44, 1, 7, gpt0_isr);
+	interupt_config(55, 4, 6, pit0_isr);
 	int_uninhibit_all();
 	play_song();
 	while(1){}

@@ -46,7 +46,7 @@ void gpio_port_tc_set_pin_state(int p_pin, int p_state){
 }
 
 void gpio_port_ta_init(){
-	MCF_GPIO_PTAPAR = MCF_GPIO_PTAPAR_PTAPAR0(0) |
+	MCF_GPIO_PTAPAR = MCF_GPIO_PTAPAR_PTAPAR0(1) |
 			MCF_GPIO_PTAPAR_PTAPAR3(3);
 	
 	

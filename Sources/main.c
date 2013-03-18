@@ -20,17 +20,14 @@
 __declspec(noreturn)int main(void)
 {
 	/*  proof that the speaker works */
-	
+	gpio_port_tc_init();
 	gpio_port_ta_init();
 	init_pwm();
-	pit0_init();
-	int_uninhibit_all();
 	uc_led_init();
 	gpt_init();
-	
-	
-	while(1){
-		play_song();
-	}
+	pit0_init();
+	int_uninhibit_all();
+	play_song();
+	while(1){}
 }
 

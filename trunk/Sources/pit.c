@@ -15,7 +15,7 @@ unsigned int quarterNoteTime;
 double newTime;
 int tempo;
 int d_flag = 0;
-int d_count = 0;
+
 
 void pit0_init(){
 	
@@ -105,6 +105,16 @@ void set_note_length(int note_length){
 
 void set_tempo(){
 	
+	if(d_flag){
+		currentTempo = currentTempo - 10;
+	}
+	else{
+		currentTempo = currentTempo + 10;
+	}
+		
+	if(currentTempo == 60 || currentTempo == 120)
+			d_flag = (~d_flag) & 0x1;//switch direction
+	
 	//set value of counter
 	if (currentTempo == 60)
 	{
@@ -140,24 +150,3 @@ void pit_off() {
 	MCF_PIT0_PCSR &= ~(0x0001);
 }
 
-__declspec(interrupt) void gpt0_isr()
-{
-	
-	if(d_flag){
-		currentTempo = currentTempo - 10;
-	}
-	else{
-		currentTempo = currentTempo + 10;
-	}
-	
-	if(currentTempo == 60 || currentTempo == 120){
-		d_flag = (~d_flag) & 0x1;//switch direction
-	}
-	
-	// change tempo
-	set_tempo();
-	//Clear the interrupt request flag
-	MCF_GPT_GPTFLG1 = 0x01;
-
-
-}

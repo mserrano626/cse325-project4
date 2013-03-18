@@ -27,7 +27,7 @@ void pit0_init(){
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_DBG;
 	MCF_PIT0_PCSR |= MCF_PIT_PCSR_PRE(13);
 	
-	currentTempo = 90;
+	currentTempo = 60;
 	set_tempo();
 	
 	
